@@ -22,8 +22,7 @@ public class Block extends EntityColor
 		setID(ID);
 		setPosX(xPos);
 		setPosY(yPos);
-		setWidth(size);
-		setHeight(size);
+		setSize(size);
 		setX(xPos * size);
 		setY(yPos * size); 
 	}
@@ -71,7 +70,7 @@ public class Block extends EntityColor
 		return size;
 	}
 	
-	public static void setSize(int size)
+	public static void setBlockSize(int size)
 	{
 		Block.size = size;
 	}

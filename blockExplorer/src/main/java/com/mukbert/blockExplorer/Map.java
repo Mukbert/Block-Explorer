@@ -13,21 +13,27 @@ public class Map
 	private List<Block> blocks;
 	private HashMap<Point, Block> map;
 	
+	private int sizeX;
+	private int sizeY;
+	
 	public Map() 
 	{
 		blocks = new ArrayList<Block>();
 		map = new HashMap<Point, Block>();
+		
+		sizeX = 16;
+		sizeY = 12;
 	}
 	
 	public void init()
 	{
 		Random random = new Random();
 		
-		for(int x = 0; x < 16; x++)
+		for(int x = 0; x < sizeX; x++)
 		{
 			int yStart = 3 + random.nextInt(3);
 			
-			for(int y = 0; y < 12; y++)
+			for(int y = 0; y < sizeY; y++)
 			{
 				Point point = new Point(x, y);
 				
@@ -49,6 +55,26 @@ public class Map
 		{
 			block.draw(g);
 		}
+	}
+	
+	public int getSizeX()
+	{
+		return sizeX;
+	}
+	
+	public int getSizeY()
+	{
+		return sizeY;
+	}
+	
+	public int getWidth()
+	{
+		return sizeX * Block.getSize();
+	}
+	
+	public int getHeight()
+	{
+		return sizeY * Block.getSize();
 	}
 	
 	public Block getBlock(Point2D point)

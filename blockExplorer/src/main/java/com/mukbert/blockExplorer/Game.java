@@ -20,20 +20,17 @@ public class Game extends Framework
 		player = new Player();
 	}
 	
-	@Override
 	public void init(int width, int height) 
 	{
 		map.init();
 		player.init(this, 2, 2);
 	}
 	
-	@Override
 	public void update(double t)
 	{
 		player.update();
 	}
 	
-	@Override
 	public void draw(Graphics2D g) 
 	{		
 		map.draw(g);
