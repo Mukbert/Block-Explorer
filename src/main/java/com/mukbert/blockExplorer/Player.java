@@ -20,7 +20,8 @@ public class Player extends EntityColor
 	private double yOld;
 	
 	private boolean canJump;
-	private boolean canMove;
+	private boolean hasCollisionX;
+	private boolean hasCollisionY;
 	
 	public Player()
 	{
@@ -44,9 +45,12 @@ public class Player extends EntityColor
 	
 	public void update()
 	{
+		hasCollisionX = false;
+		hasCollisionY = false;
 		xOld = getX();
 		yOld = getY();
 		
+		collision(true, true);
 		jump();
 		gravity();
 		move();
@@ -64,13 +68,10 @@ public class Player extends EntityColor
 	
 	private void jump()
 	{
-		if(Game.getKeyboard().isKeyDown(KeyEvent.VK_SPACE))
+		if(Game.getKeyboard().isKeyDown(KeyEvent.VK_SPACE) && canJump)
 		{
-			if(canJump)
-			{
-				canJump = false;
-				ySpeed -= jumpPower * Block.getSize();
-			}
+			canJump = false;
+			ySpeed = -jumpPower * Block.getSize();
 		}
 	}
 	
@@ -87,21 +88,11 @@ public class Player extends EntityColor
 		
 		if(moveLeft)
 		{
-			if(canMove)
-			{
-				xSpeed -= moveSpeed * Block.getSize() * Game.getTimeDelta();
-			}
+			xSpeed -= moveSpeed * Block.getSize() * Game.getTimeDelta();
 		}
 		else if(moveRight)
 		{
-			if(canMove)
-			{
-				xSpeed += moveSpeed * Block.getSize() * Game.getTimeDelta();
-			}
-		}
-		else
-		{
-			canMove = true;
+			xSpeed += moveSpeed * Block.getSize() * Game.getTimeDelta();
 		}
 		
 		xSpeed *= frictionFactor;
@@ -138,14 +129,15 @@ public class Player extends EntityColor
 					if(x)
 					{
 						setX(xOld);
-						xSpeed = -xSpeed;
-						canMove = false;
+						xSpeed = 0;
+						hasCollisionX = true;
 					}
 					if(y) 
 					{
 						setY(yOld);
-						ySpeed = 0;
+						ySpeed = -ySpeed * 0.4;
 						canJump = true;
+						hasCollisionY = true;
 					}
 				}
 			}
