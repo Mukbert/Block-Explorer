@@ -5,6 +5,7 @@ import java.awt.Color;
 public class BlockData 
 {		
 	private int ID;
+	private double removeTime;
 	private String name;
 	private Color color;
 	
@@ -26,6 +27,12 @@ public class BlockData
 		{
 			throw new ExceptionInInitializerError("The BlockData for ID: '" + ID + "' already exists!");
 		}
+	}
+	
+	protected BlockData setRemoveTime(double time) 
+	{
+		this.removeTime = time;
+		return this;
 	}
 	
 	protected BlockData setName(String name)
@@ -59,5 +66,10 @@ public class BlockData
 	public Color getColor()
 	{
 		return color;
+	}
+	
+	public double getRemoveTime()
+	{
+		return removeTime;
 	}
 }

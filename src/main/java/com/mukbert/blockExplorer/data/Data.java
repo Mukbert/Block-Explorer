@@ -22,7 +22,7 @@ public class Data
 		private static HashMap<Integer, BlockData> data = new HashMap<Integer, BlockData>();
 		
 		public static BlockData AIR 	= BlockData.create(0).setName("Air").setColor(null);
-		public static BlockData DIRT 	= BlockData.create(1).setName("Dirt").setColor(Color.orange);
-		public static BlockData STONE 	= BlockData.create(2).setName("Stone").setColor(Color.gray);
+		public static BlockData DIRT 	= BlockData.create(1).setName("Dirt").setColor(Color.orange).setRemoveTime(0.2);
+		public static BlockData STONE 	= BlockData.create(2).setName("Stone").setColor(Color.gray).setRemoveTime(0.5);
 	}
 }

@@ -9,8 +9,9 @@ public class Game extends Framework
 {
 	private Map map;
 	private Player player;
+	private Axe axe;
 	
-	public Game() 
+	public Game()
 	{
 		super("Game", 800, 600);
 		
@@ -18,23 +19,27 @@ public class Game extends Framework
 		
 		map = new Map();
 		player = new Player();
+		axe = new Axe();
 	}
 	
 	public void init(int width, int height) 
 	{
 		map.init();
-		player.init(this, 2, 2);
+		player.init(map, 2, 2);
+		axe.init(map);
 	}
 	
 	public void update(double t)
 	{
 		player.update();
 		map.update();
+		axe.update();
 	}
 	
 	public void draw(Graphics2D g) 
 	{		
 		map.draw(g);
+		axe.draw(g);
 		player.draw(g);
 		
 		Block block = map.getBlock(Game.getMouse().getPoint());

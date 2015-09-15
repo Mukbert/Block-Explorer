@@ -8,7 +8,7 @@ import com.mukbert.framework.EntityColor;
 
 public class Player extends EntityColor
 {
-	private Game game;
+	private Map map;
 	
 	private double frictionFactor;
 	private double jumpPower;
@@ -29,9 +29,9 @@ public class Player extends EntityColor
 		super(RECTANGLE);
 	}
 	
-	public void init(Game game, int xPos, int yPos)
+	public void init(Map map, int xPos, int yPos)
 	{
-		this.game = game;
+		this.map = map;
 		
 		setWidth (0.8 * Block.getSize());
 		setHeight(0.8 * Block.getSize());
@@ -101,7 +101,7 @@ public class Player extends EntityColor
 		moveX(xSpeed * Game.getTimeDelta());
 		
 		if(getX() < 0) setX(0);
-		else if(getRight() > game.getMap().getWidth()) setX(game.getMap().getWidth() - getWidth());
+		else if(getRight() > map.getWidth()) setX(map.getWidth() - getWidth());
 		
 		collision(true, false);
 	}
@@ -114,16 +114,16 @@ public class Player extends EntityColor
 		int y2 = (int) (getBottom() / Block.getSize());
 		
 		if(x1 < 0) x1 = 0;
-		else if(x2 > game.getMap().getSizeX() - 1) x2 = game.getMap().getSizeX() - 1;
+		else if(x2 > map.getSizeX() - 1) x2 = map.getSizeX() - 1;
 		
 		if(y1 < 0) y1 = 0;
-		else if(y2 > game.getMap().getSizeY() - 1) y2 = game.getMap().getSizeY() - 1;
+		else if(y2 > map.getSizeY() - 1) y2 = map.getSizeY() - 1;
 		
 		for(int xPos = x1; xPos <= x2; xPos++)
 		{
 			for(int yPos = y1; yPos <= y2; yPos++)
 			{
-				Block block = game.getMap().getBlock(xPos, yPos);
+				Block block = map.getBlock(xPos, yPos);
 				
 				if(block.getBlockData() != Data.Block.AIR && this.intersects(block))
 				{

@@ -51,7 +51,10 @@ public class Map
 	
 	public void update()
 	{
-		
+		for(Block block : blocks)
+		{
+			block.update();
+		}
 	}
 	
 	public void draw(Graphics2D g)

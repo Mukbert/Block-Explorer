@@ -29,6 +29,11 @@ public class Block extends EntityColor
 		setY(yPos * size); 
 	}
 	
+	public void update()
+	{
+		
+	}
+	
 	@Override
 	public void draw(Graphics2D g)
 	{
@@ -44,9 +49,14 @@ public class Block extends EntityColor
 		return blockData;
 	}
 	
-	private void setBlockData(int ID)
+	public void setBlockData(int ID)
 	{
-		this.blockData = Data.getBlockData(ID);
+		setBlockData(Data.getBlockData(ID));
+	}
+	
+	public void setBlockData(BlockData blockData)
+	{
+		this.blockData = blockData;
 		setColor(blockData.getColor());
 	}
 	
