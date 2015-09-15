@@ -3,6 +3,7 @@ package com.mukbert.blockExplorer;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
+import com.mukbert.blockExplorer.data.Data;
 import com.mukbert.framework.EntityColor;
 
 public class Player extends EntityColor
@@ -25,7 +26,7 @@ public class Player extends EntityColor
 	
 	public Player()
 	{
-		super(ELLIPSE);
+		super(RECTANGLE);
 	}
 	
 	public void init(Game game, int xPos, int yPos)
@@ -36,7 +37,7 @@ public class Player extends EntityColor
 		setHeight(0.8 * Block.getSize());
 		setX((xPos + 0.5) * Block.getSize() - getWidth()  / 2);
 		setY((yPos + 0.5) * Block.getSize() - getHeight() / 2);
-		setColor(Color.red);
+		setColor(Color.blue);
 		setMoveSpeed(20);
 		setGravityPower(20);
 		setJumpPower(8);
@@ -124,7 +125,7 @@ public class Player extends EntityColor
 			{
 				Block block = game.getMap().getBlock(xPos, yPos);
 				
-				if(block.getID() != 0 && this.intersects(block))
+				if(block.getBlockData() != Data.Block.AIR && this.intersects(block))
 				{
 					if(x)
 					{

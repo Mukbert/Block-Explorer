@@ -29,6 +29,7 @@ public class Game extends Framework
 	public void update(double t)
 	{
 		player.update();
+		map.update();
 	}
 	
 	public void draw(Graphics2D g) 

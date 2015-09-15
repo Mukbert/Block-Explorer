@@ -2,13 +2,15 @@ package com.mukbert.blockExplorer;
 
 import java.awt.Graphics2D;
 
+import com.mukbert.blockExplorer.data.BlockData;
+import com.mukbert.blockExplorer.data.Data;
 import com.mukbert.framework.EntityColor;
 
 public class Block extends EntityColor
 {
 	private static int size = 50;
 	
-	private int ID;
+	private BlockData blockData;
 	private int xPos;
 	private int yPos;
 	
@@ -19,7 +21,7 @@ public class Block extends EntityColor
 	
 	public void init(int ID, int xPos, int yPos)
 	{
-		setID(ID);
+		setBlockData(ID);
 		setPosX(xPos);
 		setPosY(yPos);
 		setSize(size);
@@ -28,21 +30,24 @@ public class Block extends EntityColor
 	}
 	
 	@Override
-	public void draw(Graphics2D g) 
+	public void draw(Graphics2D g)
 	{
-		if(ID == 0) return;
-
-		super.draw(g);
+		if(blockData == Data.Block.AIR) return;
+		
+		
+		g.setColor(blockData.getColor());
+		g.fill(getBounds());
 	}
 	
-	public int getID()
+	public BlockData getBlockData()
 	{
-		return ID;
+		return blockData;
 	}
 	
-	private void setID(int ID)
+	private void setBlockData(int ID)
 	{
-		this.ID = ID;
+		this.blockData = Data.getBlockData(ID);
+		setColor(blockData.getColor());
 	}
 	
 	public int getPosX()

@@ -49,6 +49,11 @@ public class Map
 		}
 	}
 	
+	public void update()
+	{
+		
+	}
+	
 	public void draw(Graphics2D g)
 	{
 		for(Block block : blocks)
